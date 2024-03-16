@@ -18,13 +18,13 @@
         th:each="universidad : ${universidades}">
         <h1 class="font-bold">[[${universidad.nombreUniversidad}]]</h1>
         <img th:src="${universidad.photoUniversidad}" th:alt="${universidad.photoUniversidad}" class="w-3/4 rounded">
-        <div class="flex gap-4"  th:sec:authorize="isAuthenticated">
+        <div class="flex gap-4"  sec:authorize="isAuthenticated">
           <a th:href="@{/detalleUniversidad/}+${universidad.idUniversidad}"
             class="border  p-1  rounded hover:bg-white hover:text-slate-800">Ver mas +</a>
           <a th:href="@{/editarUniversidad/}+${universidad.idUniversidad}"
-            class="border border-teal-400 p-1 rounded hover:bg-teal-400 ">Editar</a>
+            class="border border-teal-400 p-1 rounded hover:bg-teal-400 " sec:authorize="hasRole('DIRECTOR')">Editar</a>
           <a th:href="@{/eliminarUniversidad/{id}(id=${universidad.idUniversidad})}"
-            class="border border-red-500 p-1 rounded hover:bg-red-500 ">Eliminar</a>
+            class="border border-red-500 p-1 rounded hover:bg-red-500 " sec:authorize="hasRole('DIRECTOR')">Eliminar</a>
 
         </div>
         <section class="border flex flex-col rounded-xl p-4 gap-4 w-full">

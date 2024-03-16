@@ -37,7 +37,7 @@ public class UsuarioController {
         model.put("usuario", usuario);
         model.put("directores", iDirectorService.findAll());
         model2.addAttribute("title", "Registrar Usuario");
-        return "/register";
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = { RequestMethod.POST })

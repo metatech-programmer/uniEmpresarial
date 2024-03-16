@@ -26,14 +26,16 @@
                 </a>
 
             </div>
-            <ul class="flex gap-12 py-2 justify-between w-full h-full list-disc" th:sec:authorize="isAuthenticated">
-                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+            <ul class="flex gap-12 py-2 justify-between w-full h-full list-disc" sec:authorize="isAuthenticated">
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4"
+                    sec:authorize="hasRole('DIRECTOR')">
                     <a th:href="@{/director}">DIRECTORES</a>
                 </li>
                 <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
                     <a th:href="@{/universidad}">UNIVERSIDADES</a>
                 </li>
-                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4"
+                    sec:authorize="hasRole('DIRECTOR')">
                     <a th:href="@{/telefono}">TELEFONOS</a>
                 </li>
                 <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
@@ -41,16 +43,16 @@
                 </li>
             </ul>
             <ul class="flex gap-4 w-full h-full justify-end">
-                <li th:sec:authorize="isAnonymous"
+                <li sec:authorize="isAnonymous"
                     class="border-2 border-white px-2 py-1 rounded hover:bg-white hover:text-slate-800 text-center  active:scale-105 p-4 transition-all hover:cursor-pointer hover:ring-2 ">
                     <a th:href="@{/register}">Registrar</a>
                 </li>
-                <li th:sec:authorize="isAnonymous"
+                <li sec:authorize="isAnonymous"
                     class="border-2 border-white px-2 py-1 rounded bg-white text-slate-800 text-center transition-all active:scale-105 p-4 hover:cursor-pointer hover:ring-2">
                     <a th:href="@{/login}">Iniciar
                         Sesion</a>
                 </li>
-                <li th:sec:authorize="isAuthenticated"
+                <li sec:authorize="isAuthenticated"
                     class="border-2 border-white px-2 py-1 rounded bg-white text-slate-800 text-center transition-all active:scale-105 p-4 hover:cursor-pointer hover:ring-2">
                     <form th:action="@{/logout}" method="post">
                         <a class="nav-link l-login" onclick="this.parentNode.submit();" href="#">Cerrar sesion</a>
@@ -59,7 +61,7 @@
             </ul>
         </nav>
         <nav class="absolute top-[70px] left-0 right-0 flex justify-between bg-slate-400 py-4 px-20 w-screen h-[50px] "
-            th:if="${urlRegistro}"  th:sec:authorize="isAuthenticated">
+            th:if="${urlRegistro}" sec:authorize="hasRole('DIRECTOR')">
             <ul class="w-full flex justify-end items-center">
                 <li
                     class="flex gap-4 p-2 border border-white rounded-xl hover:bg-white hover:text-slate-800 text-sm active:scale-105 transition-all">

@@ -18,7 +18,7 @@
         <h1 class="font-bold">[[${telefono.idTelefono}]]</h1>
         <img th:src="${telefono.idUniversidad.photoUniversidad}" th:alt="${telefono.idUniversidad.photoUniversidad}"
           class="w-3/4 rounded">
-        <div class="flex gap-4" th:sec:authorize="isAuthenticated">
+        <div class="flex gap-4" sec:authorize="isAuthenticated">
           <a th:href="@{/detalleTelefono/}+${telefono.idTelefono}"
             class="border  p-1  rounded hover:bg-white hover:text-slate-800">Ver mas +</a>
           <a th:href="@{/editarTelefono/}+${telefono.idTelefono}"
