@@ -55,4 +55,4 @@ Puedes acceder a la página de prueba [aquí](https://uniempresarial.onrender.co
 ### Contribuyentes
 - El equipo de Desarrollo empresarial
 
-![Landing Page](https://i.ibb.co/ABC123/logo.png)
+![Landing Page](https://i.ibb.co/vkwftmv/image.png)
