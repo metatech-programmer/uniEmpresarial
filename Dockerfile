@@ -29,10 +29,10 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-slim-bullseye
 
 # Establece el directorio de trabajo
-WORKDIR /uni
+WORKDIR /universidad
 
 # Copia el archivo JAR construido desde la etapa de construcción
-COPY --from=build /uni/target/universidad-0.0.1.jar universidad.jar
+COPY --from=build /universidad/target/universidad-0.0.1.jar universidad.jar
 
 # Expone el puerto que utilizará la aplicación
 EXPOSE 8080
