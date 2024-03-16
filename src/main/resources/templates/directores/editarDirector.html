@@ -44,7 +44,7 @@
           <select
             class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
             name="idUniversidad" id="idUniversidad" th:field="*{idUniversidad.idUniversidad}" required="true">
-            <option th:each="universidad: ${universidades}" th:value="${universidad.idUniversidad}">
+            <option class="text-slate-800 text-sm" th:each="universidad: ${universidades}" th:value="${universidad.idUniversidad}">
               [[${universidad.nombreUniversidad}]]
             </option>
           </select>

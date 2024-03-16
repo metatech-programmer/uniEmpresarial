@@ -34,8 +34,8 @@
                     <label for="rol" class="text-lg underline decoration-wavy underline-offset-4">Seleccione su rol</label>
                     <select name="rol" id="rol"
                         class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal">
-                        <option value="ROLE_DIRECTOR">Director</option>
-                        <option value="ROLE_ESTUDIANTE">Estudiante</option>
+                        <option class="text-slate-800 text-sm" value="ROLE_DIRECTOR">Director</option>
+                        <option class="text-slate-800 text-sm" value="ROLE_ESTUDIANTE">Estudiante</option>
                     </select>
                 </div>
                 <div class="flex flex-col gap-4 text-start">
@@ -61,7 +61,7 @@
                     <select
                         class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
                         name="idDirector" id="idDirector" th:field="*{id_director}" required="true">
-                        <option th:each="dir: ${directores}" th:value="${dir.idDirector}">
+                        <option class="text-slate-800 text-sm" th:each="dir: ${directores}" th:value="${dir.idDirector}">
                             [[${dir.nombreDirector}]]
                         </option>
                     </select>

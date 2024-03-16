@@ -1,4 +1,4 @@
-/* package com.usta.universidad.controllers;
+ package com.usta.universidad.controllers;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -32,4 +32,3 @@ public class erroresController implements ErrorController {
     }
 
 }
-  */
