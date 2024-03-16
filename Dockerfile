@@ -10,7 +10,7 @@ RUN if [ "$DELETE_OLD_IMAGES" = "true" ]; then \
 fi
 
 # Establece un directorio de trabajo
-WORKDIR /uni
+WORKDIR /universidad
 
 # Copia el archivo POM y los archivos de configuración de Maven
 COPY pom.xml .
