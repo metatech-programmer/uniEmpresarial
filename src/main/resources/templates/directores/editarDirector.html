@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+
+<body class="bg-slate-800 text-white flex flex-col  justify-center items-center h-screen w-screen">
+  <div th:replace="~{layout/layout :: fondo}"></div>
+  <header class="realtive" th:replace="~{layout/layout :: header}"></header>
+  <section class="w-full h-full flex flex-col justify-center items-center gap-4 p-4 text-slate-800 pt-32">
+    <h1 class="text-3xl font-bold uppercase mb-6 ">[[${title}]]</h1>
+    <div class="overflow-y-scroll  w-3/5 m-5 p-8">
+
+      <form th:object="${directorEdit}" th:action="@{/editarDirector/{id}(id=${directorEdit.idDirector})}"
+        method="post">
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="documentoDirector">Documento de
+            identidad</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="number" name="documentoDirector" id="documentoDirector" placeholder="7497583"
+            th:field="*{documentoDirector}" required="true" />
+          <small>Digite un documento valido</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="nombreDirector">Nombres</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="text" name="nombreDirector" id="nombreDirector" placeholder="Alvaro Julian"
+            th:field="*{nombreDirector}" required="true" />
+          <small>Digite el nombre del director</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="apellidoDirector">Apellidos</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="text" name="apellidoDirector" id="apellidoDirector" placeholder="Torres Savedra"
+            th:field="*{apellidoDirector}" required="true" />
+          <small>Digite el apellido del director</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="idUniversidad">Universidad</label>
+          <select
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            name="idUniversidad" id="idUniversidad" th:field="*{idUniversidad.idUniversidad}" required="true">
+            <option th:each="universidad: ${universidades}" th:value="${universidad.idUniversidad}">
+              [[${universidad.nombreUniversidad}]]
+            </option>
+          </select>
+          <small>Seleccione la universidad correspondiente</small>
+        </div>
+
+        <div class="flex flex-col  justify-center items-center mb-4">
+
+          <input
+            class="border border-orange-400 py-3 px-4 rounded bg-orange-200 hover:bg-orange-400 hover:text-slate-800 transition-all active:scale-105 font-bold text-lg text-white m-auto"
+            type="submit" />
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+  <footer class="realtive" th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

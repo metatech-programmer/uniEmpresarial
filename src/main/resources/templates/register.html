@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+<body class="bg-slate-800 flex flex-col justify-center items-center h-screen w-screen">
+    <div
+        class="relative bg-slate-900 p-10 rounded-xl w-3/5 h-[80vh] flex flex-col gap-4 text-white text-center shadow-xl shadow-sky-800 overflow-y-auto mt-10">
+
+        <header class="text-3xl">
+            <h1>[[${title}]]</h1>
+        </header>
+        <div>
+            <form th:action="@{/register}" th:object="${usuario}" method="post" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="nombresUsuario" class="text-lg underline decoration-wavy underline-offset-4">Nombres</label>
+                    <input type="text"
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+                        id="nombresUsuario" placeholder="Ingrese sus nombres" name="email" th:field="*{nombresUsuario}">
+                    <small id="nombreshelp" class="text-sm text-slate-700">Nunca compartiremos tu información con
+                        nadie.</small>
+                </div>
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="apellidosUsuario" class="text-lg underline decoration-wavy underline-offset-4">Apellidos</label>
+                    <input type="text"
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+                        id="apellidosUsuario" placeholder="Ingrese sus apellidos" name="apellidosUsuario"
+                        th:field="*{apellidosUsuario}">
+                    <small id="apellidoshelp" class="text-sm text-slate-700">Nunca compartiremos tu información con
+                        nadie.</small>
+                </div>
+
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="rol" class="text-lg underline decoration-wavy underline-offset-4">Seleccione su rol</label>
+                    <select name="rol" id="rol"
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal">
+                        <option value="ROLE_DIRECTOR">Director</option>
+                        <option value="ROLE_ESTUDIANTE">Estudiante</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="correoUsuario" class="text-lg underline decoration-wavy underline-offset-4">Correo electrónico </label>
+                    <input type="correoUsuario"
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+                        id="correoUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo"
+                        name="correoUsuario" th:field="*{correoUsuario}">
+                    <small id="emailHelp" class="text-sm text-slate-700">Nunca compartiremos tu información con
+                        nadie.</small>
+                </div>
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="claveUsuario" class="text-lg underline decoration-wavy underline-offset-4">Contraseña</label>
+                    <input type="claveUsuario"
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+                        id="claveUsuario" placeholder="Ingrese su contraseña" name="claveUsuario"
+                        th:field="*{claveUsuario}">
+                    <small id="passwordHelp" class="text-sm text-slate-700">Nunca compartiremos tu información con
+                        nadie.</small>
+                </div>
+                <div class="flex flex-col gap-4 text-start">
+                    <label for="idDirector" class="text-lg underline decoration-wavy underline-offset-4">Director</label>
+                    <select
+                        class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+                        name="idDirector" id="idDirector" th:field="*{id_director}" required="true">
+                        <option th:each="dir: ${directores}" th:value="${dir.idDirector}">
+                            [[${dir.nombreDirector}]]
+                        </option>
+                    </select>
+                    <small class="text-sm text-slate-700">Seleccione el director correspondiente</small>
+                </div>
+
+                <div class=" text-gray-500 text-sm">  
+                    <span>Ya tienes cuenta, <a th:href="@{/login}" class="hover:text-sky-500 hover:underline transition-all underline-offset-4"> inicia sesión</a></span>
+                </div>
+                <button type="submit" class=" border border-orange-400 py-3 px-4 rounded hover:bg-orange-400 hover:text-slate-800 transition-all active:scale-105 font-bold text-lg text-white">REGISTRAR</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer class="realtive" th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>

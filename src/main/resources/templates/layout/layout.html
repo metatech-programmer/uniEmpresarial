@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/images/Tunja.png}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>[[${title}]]</title>
+</head>
+
+<body class="bg-slate-800 text-white flex justify-center items-center h-screen w-screen"
+    th:style="'background-image: url('+ @{/images/santoto-tunja.webp} +'); background-size: cover; background-position: center; backdrop-filter:blur(2px)'">
+
+    <!-- Header Start -->
+
+    <header th:fragment="header">
+        <nav class="absolute top-0 left-0 right-0 flex justify-between bg-slate-800 py-4 px-20 w-screen h-[70px] ">
+            <div class=" w-full h-full flex items-center text-md font-bold text-sky-400 ">
+
+                <a th:href="@{/}"
+                    class="bg-slate-900 rounded-xl px-2 flex items-center h-full gap-2 shadow-md shadow-sky-800">
+                    <img src="/images/Tunja.png" alt="" class="h-full">
+                    <span>DEV ENTERPRISE</span>
+                </a>
+
+            </div>
+            <ul class="flex gap-12 py-2 justify-between w-full h-full list-disc" th:sec:authorize="isAuthenticated">
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+                    <a th:href="@{/director}">DIRECTORES</a>
+                </li>
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+                    <a th:href="@{/universidad}">UNIVERSIDADES</a>
+                </li>
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+                    <a th:href="@{/telefono}">TELEFONOS</a>
+                </li>
+                <li class="hover:text-orange-300  hover:underline transition-all underline-offset-4">
+                    <a th:href="@{/seccional}">SECCIONALES</a>
+                </li>
+            </ul>
+            <ul class="flex gap-4 w-full h-full justify-end">
+                <li th:sec:authorize="isAnonymous"
+                    class="border-2 border-white px-2 py-1 rounded hover:bg-white hover:text-slate-800 text-center  active:scale-105 p-4 transition-all hover:cursor-pointer hover:ring-2 ">
+                    <a th:href="@{/register}">Registrar</a>
+                </li>
+                <li th:sec:authorize="isAnonymous"
+                    class="border-2 border-white px-2 py-1 rounded bg-white text-slate-800 text-center transition-all active:scale-105 p-4 hover:cursor-pointer hover:ring-2">
+                    <a th:href="@{/login}">Iniciar
+                        Sesion</a>
+                </li>
+                <li th:sec:authorize="isAuthenticated"
+                    class="border-2 border-white px-2 py-1 rounded bg-white text-slate-800 text-center transition-all active:scale-105 p-4 hover:cursor-pointer hover:ring-2">
+                    <form th:action="@{/logout}" method="post">
+                        <a class="nav-link l-login" onclick="this.parentNode.submit();" href="#">Cerrar sesion</a>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <nav class="absolute top-[70px] left-0 right-0 flex justify-between bg-slate-400 py-4 px-20 w-screen h-[50px] "
+            th:if="${urlRegistro}"  th:sec:authorize="isAuthenticated">
+            <ul class="w-full flex justify-end items-center">
+                <li
+                    class="flex gap-4 p-2 border border-white rounded-xl hover:bg-white hover:text-slate-800 text-sm active:scale-105 transition-all">
+                    <a th:href="@{${urlRegistro}}">Agregar
+                        nuevo registro</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Header fin -->
+
+
+    <!-- fondo -->
+    <div th:fragment="fondo"
+        class="absolute top-0 z-[-2] h-screen w-screen bg-slate-200 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+    </div>
+    <!-- fondo fin-->
+
+    <footer class="sticky bottom-2 left-0 right-0 flex justify-center items-center h-[70px] w-full m-6"
+        th:fragment="footer">
+        <div class="text-center text-slate-400 absolute bottom-2  left-0 right-0">&copy; 2024. Casi todos los derechos
+            reservados.</div>
+
+    </footer>
+</body>
+
+</html>

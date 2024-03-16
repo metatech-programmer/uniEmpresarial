@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+
+<body class="bg-slate-800 text-white flex flex-col justify-center items-center h-screen w-screen">
+  <div th:replace="~{layout/layout :: fondo}"></div>
+  <header class="realtive" th:replace="~{layout/layout :: header}"></header>
+  <section class="w-full h-full flex flex-col justify-center items-center gap-4 p-4 text-slate-800 pt-32">
+    <h1 class="text-3xl font-bold uppercase mb-6 ">[[${title}]]</h1>
+
+    <div class="overflow-y-scroll  w-3/5 m-5 p-8">
+
+      <form th:object="${universidad}" th:action="@{crearUniversidad}" method="post" enctype="multipart/form-data">
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="nitUniversidad">Nit</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="text" name="nitUniversidad" id="nitUniversidad" placeholder="1335563" th:field="*{nitUniversidad}"
+            required="true" />
+          <small>Digita un Nit, recuerda que este campo es único</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="nombreUniversidad">Nombre
+            Universidad</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="text" name="nombreUniversidad" id="nombreUniversidad" placeholder="Universidad Santa..."
+            th:field="*{nombreUniversidad}" required="true" />
+          <small>Digita el nombre de la universida</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="fechaFundacionUniversidad">Fecha de
+            fundación</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="date" name="fechaFundacionUniversidad" id="fechaFundacionUniversidad"
+            th:field="*{fechaFundacionUniversidad}" required="true" />
+          <small>Digita la fecha de fundación de la universidad</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4"
+            for="direccionUniversidad">Dirección</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="text" name="direccionUniversidad" id="direccionUniversidad"
+            placeholder="Cra 6 # 45 - 12, Av. Siempre Buena" th:field="*{direccionUniversidad}" required="true" />
+          <small>Digita la dirección de la universidad</small>
+        </div>
+        <div class="flex flex-col gap-4 text-start">
+          <label class="text-lg underline decoration-wavy underline-offset-4" for="foto">Foto de la universidad</label>
+          <input
+            class="bg-transparent py-2 outline-none border-b border-sky-400 focus:border-sky-500 transition-all focus:scale-105 focus:font-normal"
+            type="file" name="foto" id="foto" placeholder="Archivo..." required="true" accept="image/*" />
+          <small>Coloca una imagen de la universidad</small>
+          <img class="img-thumbnail" id="previewImage" src="" alt="Imagen Subida"
+            style="display: none; max-width: 300px; margin: 20px auto; border: 1px solid rgb(15, 15, 15);">
+          <div id="error" style="color: red;"></div>
+        </div>
+
+        <div class="flex flex-col  justify-center items-center mb-4">
+
+          <input
+            class="border border-orange-400 py-3 px-4 rounded bg-orange-200 hover:bg-orange-400 hover:text-slate-800 transition-all active:scale-105 font-bold text-lg text-white m-auto"
+            type="submit" />
+
+        </div>
+      </form>
+    </div>
+  </section>
+  <footer class="realtive" th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+<script>
+  const fileInput = document.getElementById('foto');
+  const previewImage = document.getElementById('previewImage');
+  const errorMessage = document.getElementById('error');
+  const maxSizeInMB = 2; // Cambia el límite de tamaño aquí (en MB).
+
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Verificar el tamaño del archivo
+      if (file.size > maxSizeInMB * 1024 * 1024) {
+        errorMessage.textContent = `El archivo debe ser menor o igual a ${maxSizeInMB} MB.`;
+        previewImage.style.display = 'none';
+        fileInput.value = ''; // Limpiar la selección del archivo inválido
+        fileInput.disabled = false; // Habilitar el input nuevamente
+      } else {
+        errorMessage.textContent = '';
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  });
+</script>
+
+</html>

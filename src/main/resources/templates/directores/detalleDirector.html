@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/layout :: head}"></head>
+
+
+<body class="bg-slate-800 text-white flex flex-col justify-center items-center h-screen w-screen">
+  <div th:replace="~{layout/layout :: fondo}"></div>
+  <header class="realtive" th:replace="~{layout/layout :: header}"></header>
+  <section class="w-full h-full flex flex-col justify-center items-center gap-4 p-4 text-slate-800 pt-32">
+    <h1 class="text-3xl font-bold uppercase mb-6 ">[[${title}]]</h1>
+
+    <div
+      th:style="'background-image: url('+${detalleD.idUniversidad.photoUniversidad}+'); background-repeat: no-repeat; background-size: cover; background-position: center; text-shadow: 0 0 10px #423f3f;'"
+      class="w-full h-full p-8 text-2xl bg-slate-300 rounded  font-semibold gap-4 text-center flex flex-col justify-center items-center ">
+      <h1 class="text-3xl font-bold uppercase">[[${detalleD.nombreDirector + ' ' + detalleD.apellidoDirector}]]</h1>
+      <h2><span class="font-bold underline underline-offset-4">Universidad</span>:
+         [[${detalleD.idUniversidad.nombreUniversidad}]]</h2>
+      <h2><span class="font-bold underline underline-offset-4">Documento</span>:   [[${detalleD.documentoDirector}]]</h2>
+      <h2><span class="font-bold underline underline-offset-4">Estado</span>:  [[${detalleD.estadoDirector}]]</h2>
+    </div>
+
+  </section>
+  <footer class="realtive" th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>
